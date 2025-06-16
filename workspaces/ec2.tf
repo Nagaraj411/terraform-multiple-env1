@@ -1,8 +1,8 @@
 resource "aws_instance" "roboshop" {
-  count                  = length(var.instances) # number of instances to create, based on the length of the instances list
+  count = length(var.instances) # number of instances to create, based on the length of the instances list
   # if instances = ["mongodb", "redis"], then count = 2, so two instances will be created
-  ami                    = var.ami_id # left and right side names no need to be same
-  instance_type          = lookup(var.instance_type, terraform.workspace) # t3.micro for dev, t3.small
+  ami           = var.ami_id                                     # left and right side names no need to be same
+  instance_type = lookup(var.instance_type, terraform.workspace) # t3.micro for dev, t3.small
   # terraform.workspace is the current workspace, which can be dev or prod
   vpc_security_group_ids = [aws_security_group.allow_all.id]
 
