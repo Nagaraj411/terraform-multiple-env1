@@ -9,7 +9,7 @@ resource "aws_instance" "roboshop" {
   tags = merge(
     var.common_tags,
     {
-      Name        = "${var.project}-${var.instances[count.index]}-${terraform.workspace}"
+      Name        = "${var.project}-${var.instances[count.index]}-${terraform.workspace}" # its shows like this roboshop-mongodb-dev or prod, roboshop-redis-dev or prod
       Component   = var.instances[count.index]
       Environment = terraform.workspace
     }
